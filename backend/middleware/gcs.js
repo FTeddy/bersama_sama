@@ -62,3 +62,29 @@ function googleUpload (req, res, next) {
 
   stream.end(req.file.buffer);
 }
+
+function googleDelete (req, res, next) {\
+  // TODO change the bucket name
+  let extra = 'https://storage.googleapis.com/test-shop.teddydevstack.com/';
+  const targetFile = req.toDelete.filePath.substr(extra.length);
+  console.log(targetFile);
+
+  storage
+    .bucket(config.CLOUD_BUCKET)
+    .file(targetFile)
+    .delete()
+    .then(() => {
+      console.log(`${config.CLOUD_BUCKET}/${targetFile} is deleted`);
+      next()
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'failed to delete image'
+      })
+    })
+}
+
+module.exports = {
+  googleUpload: googleUpload,
+  googleDelete: googleDelete
+};

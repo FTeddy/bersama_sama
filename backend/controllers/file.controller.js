@@ -88,5 +88,21 @@ module.exports = {
                 message: 'Item deleted',
             })
         })
+    },
+
+    findOneAndNext: (req, res, next) => {
+        const id = req.params.id
+        Files.findOne({_id:id})
+          .exec()
+          .then(foundFile => {
+            req.toDelete = foundFile;
+            next()
+          })
+          .catch(err => {
+            res.status(404).json({
+              message: 'File not found.',
+              err: err
+            })
+          })
     }
 }
