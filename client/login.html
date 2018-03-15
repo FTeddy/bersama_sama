@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Bersama</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="./asset/js/facebooklogin.js"></script>
+        <link rel="stylesheet" href="./asset/style/login.css">
+    </head>
+    <body>
+<div class="container auth">
+    <h1 class="text-center">Welcome to InstaKW </h1>
+    <div id="big-form" class="well auth-box">
+      <form>
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Please Sign In</legend>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class=" control-label" for="textinput">Username</label>  
+            <div class="">
+              <input id="textinput" name="textinput" placeholder="Username" class="form-control input-md" type="text">
+            </div>
+          </div>
+
+          <!-- Password input-->
+          <div class="form-group">
+            <label class=" control-label" for="passwordinput">Password</label>
+            <div class="">
+              <input id="passwordinput" name="passwordinput" placeholder="Password" class="form-control input-md" type="password">
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+              <a href="#" class="btn btn-default">Register</a>
+            </div>
+
+        <div class="form-group text-center">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">
+                </div>
+            <div id="fb-root"></div>
+        </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
