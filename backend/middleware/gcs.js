@@ -20,22 +20,14 @@ function storageUrl (filename) {
 
 function googleUpload (req, res, next) {
   const bucket = storage.bucket(config.CLOUD_BUCKET)
-
   if (!req.file) {
     console.log('no file uploaded, skipping...');
     return next();
   }
 
-  let userName;
-  if (!req.decoded.name) {
-    userName = 'etc';
-  } else {
-    userName = req.decoded.name;
-  }
-
   let extension = req.file.originalname.split('.').pop();
-  const destination = `${userName}/`;
-  const uploadName = destination + Date.now() + 'bersama.' + extension;
+  const destination = `${req.params.userId}/`;
+  const uploadName = destination + Date.now() + '-bersama.' + extension;
   const file = bucket.file(uploadName);
 
   // streaming
@@ -63,7 +55,7 @@ function googleUpload (req, res, next) {
   stream.end(req.file.buffer);
 }
 
-function googleDelete (req, res, next) {\
+function googleDelete (req, res, next) {
   // TODO change the bucket name
   let extra = 'https://storage.googleapis.com/test-shop.teddydevstack.com/';
   const targetFile = req.toDelete.filePath.substr(extra.length);
