@@ -1,12 +1,15 @@
 const express = require('express')
+const memUpload = require('../middleware/multer')
+const {googleUpload, googleDelete}
 const router = express.Router()
 
-const {create, findAll, findById, like, destroy} = require('../controllers/file.controller')
+const {create, findAll, findById, like, destroy, findOneAndNext} = require('../controllers/file.controller')
 
-router.post('/create/:userId', create);
+// TODO change memUpload argument to form input name
+router.post('/create/:userId', memUpload.single('image'), googleUpload, create);
 router.get('/', findAll);
 router.get('/:id', findById);
 router.put('/:fileId/:userid', like);
-router.delete('/:id', destroy);
+router.delete('/:id', findOneAndNext, googleDelete, destroy);
 
 module.exports = router
