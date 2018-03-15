@@ -10,6 +10,6 @@ router.post('/create/:facebookId', memUpload.single('image'), googleUpload, crea
 router.get('/', findAll);
 router.get('/:id', findById);
 router.put('/:fileId/:userid', like);
-router.delete('/:id', findOneAndNext, googleDelete, destroy);
+router.delete('/delete/:fileId', findOneAndNext, googleDelete, destroy);
 
 module.exports = router

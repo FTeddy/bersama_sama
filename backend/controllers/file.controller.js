@@ -94,21 +94,22 @@ module.exports = {
             })
     },
     destroy: (req, res) => {
-        Files.remove({ _id: req.params.id }, (err, data) => {
-            if (err) {
-                console.log(err);
-                return res.status(400).json({
-                    message: err.message
-                })
-            }
-            res.status(200).json({
-                message: 'Item deleted',
-            })
-        })
+      const id = req.params.fileId
+      Files.remove({ _id: id }, (err, data) => {
+          if (err) {
+              console.log(err);
+              return res.status(400).json({
+                  message: err.message
+              })
+          }
+          res.status(200).json({
+              message: 'Item deleted',
+          })
+      })
     },
 
     findOneAndNext: (req, res, next) => {
-        const id = req.params.id
+        const id = req.params.fileId
         Files.findOne({_id:id})
           .exec()
           .then(foundFile => {
