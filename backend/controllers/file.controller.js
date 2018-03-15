@@ -1,25 +1,38 @@
 const User = require('../models/user.model');
 const Files = require('../models/file.model');
 
+
 module.exports = {
     create: (req, res) => {
-        let file = {
-            filePath: req.file.imgUrl,
-            mimeType: req.file.mimetype,
-            userId: req.params.userId,
-        }
-        Files.create(file, (err, data) => {
-            if (err) {
-                console.log(err);
-                return res.status(400).json({
-                    message: err.message
-                })
+        User.findOne({facebookId: req.param.facebookId})
+          .exec()
+          .then(foundUser => {
+            let file = {
+                filePath: req.file.imgUrl,
+                mimeType: req.file.mimetype,
+                userId: foundUser._id,
             }
-            res.status(200).json({
-                message: 'New file inserted',
-                data
+            Files.create(file, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(400).json({
+                        message: err.message
+                    })
+                }
+                res.status(200).json({
+                    message: 'New file inserted',
+                    data
+                })
             })
-        })
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: 'Server error',
+              err: err
+            })
+          })
+
+
     },
     findAll: (req, res) => {
         Files.find()
