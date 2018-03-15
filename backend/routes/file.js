@@ -1,6 +1,6 @@
 const express = require('express')
 const memUpload = require('../middleware/multer')
-const {googleUpload, googleDelete}
+const {googleUpload, googleDelete} = require('../middleware/gcs')
 const router = express.Router()
 
 const {create, findAll, findById, like, destroy, findOneAndNext} = require('../controllers/file.controller')
