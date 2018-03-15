@@ -23,6 +23,8 @@ module.exports = {
     },
     findAll: (req, res) => {
         Files.find()
+            .populate('user')
+            .populate('likes')
             .exec()
             .then((data) => {
                 res.status(200).json({
@@ -41,6 +43,8 @@ module.exports = {
         Files.findOne({
             _id: req.params.id
         })
+            .populate('user')
+            .populate('likes')
             .exec()
             .then((data) => {
                 res.status(200).json({
