@@ -5,19 +5,19 @@ var request = axios.create({
 new Vue ({
     el: '#app-vue',
     data: {
-        keydata: 'asda',
-        data: null
+        data: null,
+        dataLS: localStorage.getItem('facebookId'),
+        counter: 0
     },
     mounted: function() {
         this.getData()
     },
     methods: {
-        getData: function () {  
+        getData: function () { 
             const app = this
             request.get('/file')
             .then(function (response) {
-                app.data = response.data.data[0].filePath
-                console.log(response, '-----')
+                app.data = response.data.data
             })
             .catch(function (error) {
                 console.log(error);

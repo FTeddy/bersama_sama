@@ -13,60 +13,22 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand navbar-logo" href="#">
-            <img src="./asset/img/logo.png" alt="" srcset="">
-        </a>
-    </nav>
-
-    <div class="bottom-nav fixed-bottom">
-        <div class="row">
-            <div class="col col-sm-4">
-                
-            </div>
-            <div class="col col-sm-4 border-bottom-nav">
-                <a href="#">
-                    <img src="./asset/img/add-image.png" alt="">
-                </a>
-            </div>
-            <div class="col col-sm-4">
-               
-            </div>
-        </div>
-    </div>
-
-
     <div id="app-vue">
+
+    <header-component></header-component>
+    <footer-component></footer-component>
     <div class="main-content" style="padding-top: 80px; padding-bottom: 70px;">
-        
-        <div class="card-user">
-            <img :src="data" class="img-fluid" alt="">
-            <div class="card-detail">
-                <div class="like-photo" style="margin-bottom: 10px">
-                    <button class="liked-btn display-off">
-                        <i class="fas fa-heart"></i>
-                    </button>
-                    <button v-on:click="counter += 1" class="like-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="card-bio">
-                    <h4>Jonathan Joe</h4>
-                </div>
-                <div class="card-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero consequuntur repellendus, veritatis ratione maxime, odio, iusto
-                    soluta quos labore corrupti inventore ab ullam incidunt non earum cupiditate assumenda fuga quidem.
-                </div>
-            </div>
-        </div>
-    
+        <card-component v-for="info in data" v-bind:count="counter" v-bind:info="info"></card-component>
     </div>
+
     </div>
     <!-- Main Asset -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/app.js" type="text/javascript"></script>
-    <script src="/asset/js/test.js"></script>
-   
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="asset/js/header.js"></script>
+    <script src="asset/js/footer.js"></script>
+    <script src="asset/js/card.js"></script>
+    <script src="asset/js/test.js"></script>
+    
     <!-- Jquery and Bootstrap, ETC Assets -->
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
