@@ -44,6 +44,7 @@ display:none;
 }
 
 .card-bio h4 {
+    margin-top: 8px;
     font-size: 15px !important;
 }
 
@@ -57,4 +58,15 @@ display:none;
 
 .display-off {
     display: none !important;
+}
+
+.card-bio .col-6.username {
+    padding-left: 0 !important;
+}
+
+.dateFromNow {
+    font-size: 10px;
+    margin-top: 12px;
+    color: #BFBFBF;
+    font-style: italic;
 }
