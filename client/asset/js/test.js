@@ -1,4 +1,4 @@
-var request = axios.create({
+const request = axios.create({
     baseURL: 'http://localhost:3000',
 })
 
@@ -8,12 +8,19 @@ new Vue ({
         data: null,
         dataLS: localStorage.getItem('facebookId'),
         dataJWT: localStorage.getItem('token'),
-        counter: 0
+        token: localStorage.getItem('token'),
+        counter: 0,
+        image: null,
+        fileUpload: [],
+        caption: null
     },
     mounted: function() {
         this.getData()
     },
     methods: {
+        getToken: function () {
+            return localStorage.getItem('token')
+        },
         getData: function () { 
             const app = this
             console.log(this.dataJWT)
@@ -26,6 +33,39 @@ new Vue ({
             .catch(function (error) {
                 console.log(error);
             });
+        },
+        onFileChange: function (e) {
+            const files = e.target.files || e.dataTransfer.files
+            this.fileUpload = files
+            if (files.length > 0) {
+              return this.createImage(files[0])
+            }
+        },
+        createImage: function (file) {
+            const image = new Image()
+            const reader = new FileReader()
+            const vm = this
+      
+            reader.onload = (e) => {
+              vm.image = e.target.result
+            }
+            reader.readAsDataURL(file)
+        },
+        removeImage: function (e) {
+            this.image = ''
+        },
+        uploadImage: function () {
+            // console.log(this.fileUpload[0]);
+            let data = new FormData()
+            data.append('image', this.fileUpload[0])
+            data.append('token', this.getToken())
+            data.append('description', this.caption)
+            data.append('facebookId', this.dataLS)
+            request.post(`http://localhost:3000/file/create/${this.dataLS}`, data)
+            .then(response => {
+              console.log(response);
+            //   request.get(`http://localhost:3000/`)
+            })
         }
     }
 })
