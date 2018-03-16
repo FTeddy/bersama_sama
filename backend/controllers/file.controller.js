@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const Files = require('../models/file.model');
+const moment = require('moment');
 
 module.exports = {
     create: (req, res) => {
@@ -10,6 +11,7 @@ module.exports = {
                 filePath: req.file.imgUrl,
                 mimeType: req.file.mimetype,
                 user: foundUser._id,
+                description: req.body.description
             }
 
             Files.create(file, (err, data) => {
@@ -41,11 +43,27 @@ module.exports = {
         Files.find()
             .populate('user')
             .populate('likes')
+            .sort({createdAt: 'desc'})
             .exec()
             .then((data) => {
+                let sendData = []
+                moment().format();
+                for(let i=0; i<data.length; i++){
+                    let obj = {};
+                    obj.description = data[i].description;
+                    obj.likes = data[i].likes;
+                    obj.createdAt = data[i].createdAt;
+                    obj.updatedAt = data[i].updatedAt;
+                    obj._id = data[i]._id;
+                    obj.filePath = data[i].filePath;
+                    obj.mimeType = data[i].mimeType;
+                    obj.user = data[i].user;
+                    obj.dateFromNow = moment(data[i].createdAt).fromNow();
+                    sendData.push(obj)
+                }
                 res.status(200).json({
                     message: 'Success get all data !',
-                    data
+                    data : sendData
                 })
             })
             .catch(err => {

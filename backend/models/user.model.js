@@ -7,6 +7,7 @@ const userSchema = new Schema({
     files: [{type: Schema.Types.ObjectId, ref: 'User'}],
     profilImg: String,
     facebookId: String,
+    dateFromNow: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });
