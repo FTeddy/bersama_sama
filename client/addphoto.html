@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bersama-sama</title>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./asset/style/style.css" type="text/css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.15/dist/vue.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand navbar-logo" href="#">
+            <img src="./asset/img/logo.png" alt="" srcset="">
+        </a>
+    </nav>
+
+    <div class="bottom-nav fixed-bottom">
+        <div class="row">
+            <div class="col col-sm-4">
+                
+            </div>
+            <div class="col col-sm-4 border-bottom-nav">
+                <a href="#">
+                    <div id="upload_button">
+												<!-- <label>
+													<input id="image" name="image" type="file" ngf-select ng-model="new_files" ng-change="fs.uploadFiles(new_files)" multiple>
+													<span class="btn btn-default"><img src="./asset/img/add-image.png" alt=""></span>
+												</label> -->
+												<label class="cameraButton"><img src="./asset/img/add-image.png" alt="">
+														<input type="file" accept="image/*;capture=camera" id="image" name="image">
+												</label>
+											</div>
+                </a>
+            </div>
+            <div class="col col-sm-4">
+               
+            </div>
+        </div>
+    </div>
+{{fb_id}}
+    <div id="app-vue">
+      <div class="container">
+        <div class="main-content" style="padding-top: 80px; padding-bottom: 70px;">
+          <form action="http://localhost:3000/file/create/10215495941809792" method="post">
+            <input type="file" id="image" name="image" accept="image/*;capture=camera">
+          </form>
+          <button class="btn btn-primary" type="submit">submit</button>
+        </div>
+      </div>
+    </div>
+    <!-- Main Asset -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="asset/js/test.js"></script>
+		<script>
+        let img = document.getElementById("#image").value
+        console.log(img,"<<<<<<<");
+    </script>
+   
+    <!-- Jquery and Bootstrap, ETC Assets -->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+
+    </script>
+    
+</body>
+</html>

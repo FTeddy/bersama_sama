@@ -22,6 +22,14 @@
     width: 30px;
 }
 
+#upload_button {
+    display: inline-block;
+}
+
+#upload_button input[type=file] {
+display:none;
+}
+
 .border-bottom-nav {
     border-left: 1px solid #BFBFBF;
     border-right: 1px solid #BFBFBF;
