@@ -45,7 +45,9 @@ function testAPI(token) {
         axios.post('http://localhost:3000/login/', {
             idFB: response.id,
             email: response.email,
-            fbToken: token.authResponse.accessToken
+            fbToken: token.authResponse.accessToken,
+            imgUrl: response.picture.data.url,
+            username: response.name
         })
         .then(function (response_login) {
             localStorage.setItem('token', response_login.data.token);

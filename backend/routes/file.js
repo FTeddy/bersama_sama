@@ -8,7 +8,7 @@ const {create, findAll, findById, like, destroy, findOneAndNext} = require('../c
 const {verifyUser} = require('../controllers/user.controller')
 
 // TODO change memUpload argument to form input name
-router.post('/create/:facebookId', decodeJWT, verifyUser, memUpload.single('image'), googleUpload, create);
+router.post('/create/:facebookId',memUpload.single('image'), decodeJWT, verifyUser, googleUpload, create);
 router.get('/', findAll);
 router.get('/:id', findById);
 router.put('/:fileId/:userid', like);

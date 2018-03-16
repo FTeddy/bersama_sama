@@ -6,6 +6,7 @@ module.exports = {
             .populate('files')
             .exec()
             .then(data => {
+                
                 res.status(200).json({
                     message: 'Success',
                     data: data
@@ -29,5 +30,26 @@ module.exports = {
                 message: 'Item deleted',
             })
         })
-    }
+    },
+    verifyUser: (req, res, next) => {
+        console.log(req.decoded)
+        const email = req.decoded.email;
+        User.findOne({email : email})
+          .exec().then(foundUser => {
+            if (foundUser) {
+                console.log('verify succesful')
+              next()
+            } else {
+              res.status(401).json({
+                message: 'User is not authorized to post here.'
+              })
+            }
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: 'Server Error',
+              err: err
+            })
+          })
+      }
 }
