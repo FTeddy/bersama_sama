@@ -1,10 +1,9 @@
 const User = require('../models/user.model');
 const Files = require('../models/file.model');
 
-
 module.exports = {
     create: (req, res) => {
-        User.findOne({facebookId: req.param.facebookId})
+        User.findOne({facebookId: req.params.facebookId})
           .exec()
           .then(foundUser => {
             let file = {
@@ -31,8 +30,6 @@ module.exports = {
               err: err
             })
           })
-
-
     },
     findAll: (req, res) => {
         Files.find()
