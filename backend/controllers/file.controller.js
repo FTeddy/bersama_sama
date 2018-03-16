@@ -76,11 +76,13 @@ module.exports = {
             })
     },
     like: (req, res) => {
+        const userId = req.user._id;
+
         Files.findOne({ _id: req.params.fileId })
             .exec()
             .then((data) => {
                 let updateLike = data.like;
-                updateLike.push(req.params.userid);
+                updateLike.push(req.params.userId);
                 Files.findByIdAndUpdate(req.params.fileId, {
                     like: updateLike
                 }, { new: true }, (err, data2) => {
