@@ -11,17 +11,23 @@ module.exports = {
                 mimeType: req.file.mimetype,
                 userId: foundUser._id,
             }
+
             Files.create(file, (err, data) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(400).json({
-                        message: err.message
+                // update user here
+                foundUser.files.push(data._id);
+                foundUser.save().then((User) => {
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).json({
+                            message: err.message
+                        })
+                    }
+                    res.status(200).json({
+                        message: 'New file inserted',
+                        data
                     })
-                }
-                res.status(200).json({
-                    message: 'New file inserted',
-                    data
                 })
+
             })
           })
           .catch(err => {
@@ -119,5 +125,25 @@ module.exports = {
               err: err
             })
           })
+    },
+
+    verifyUser: (req, res, next) => {
+      const email = req.decoded.email;
+      User.findOne({email : email})
+        .exec().then(foundUser => {
+          if (foundUser) {
+            next()
+          } else {
+            res.status(401).json({
+              message: 'User is not authorized to post here.'
+            })
+          }
+        })
+        .catch(err => {
+          res.status(500).json({
+            message: 'Server Error',
+            err: err
+          })
+        })
     }
 }

@@ -20,7 +20,7 @@ module.exports = {
                             })
                         }
                     })
-                    const token = jwt.sign({ email: dataUser.email, fbToken: fbToken }, 'secret-ui')
+                    const token = jwt.sign({ email: dataUser.email, fbToken: fbToken }, process.env.JWTSECRET)
                     res.status(200).json({
                         dataUser,
                         token: token
@@ -29,11 +29,11 @@ module.exports = {
                     const newUser = new User({
                         email: email,
                         facebookId: idFB,
-                        imgUrl: imgUrl,
+                        profilImg: imgUrl,
                         username: username
                     })
                     newUser.save((err, data) => {
-                        const token = jwt.sign({ email: email, fbToken: fbToken }, 'secret-ui')
+                        const token = jwt.sign({ email: email, fbToken: fbToken }, process.env.JWTSECRET)
                         res.status(200).json({
                             token: token,
                             dataUser: data
@@ -43,4 +43,3 @@ module.exports = {
             })
     }
 }
-

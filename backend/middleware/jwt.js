@@ -8,13 +8,14 @@ function getJWT (req, res, next) {
 }
 
 function decodeJWT (req, res, next) {
-  if (!req.token) {
+  if (!req.body.token) {
     return res.status(401).json({
-      message: 'You are not authorized. Please Login.'
+      message: 'You are not authorized. Please Login.',
+      status: 'unauthorized'
     })
   }
   try {
-    jwt.verify(req.token, process.env.JWTSECRET, function(err, decoded) {
+    jwt.verify(req.body.token, process.env.JWTSECRET, function(err, decoded) {
       req.decoded = decoded;
       next()
     })
@@ -26,17 +27,17 @@ function decodeJWT (req, res, next) {
 
 }
 
-function authJWT (req, res, next) {
-  if (req.token !== undefined) {
-    res.status(401).json({
-      message:'You are not logged in. No token'
-    })
-  } else {
-    next()
-  }
-}
+// function authJWT (req, res, next) {
+//   if (req.token !== undefined) {
+//     res.status(401).json({
+//       message:'You are not logged in. No token'
+//     })
+//   } else {
+//     next()
+//   }
+// }
 
 module.exports = {
   getJWT: getJWT,
-  authJWT: authJWT
+  decodeJWT: decodeJWT
 }
