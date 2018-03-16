@@ -1,5 +1,5 @@
 const request = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://bersama.teddydevstack.com',
 })
 
 new Vue ({
@@ -21,7 +21,7 @@ new Vue ({
         getToken: function () {
             return localStorage.getItem('token')
         },
-        getData: function () { 
+        getData: function () {
             const app = this
             console.log(this.dataJWT)
             request.get('/file')
@@ -45,7 +45,7 @@ new Vue ({
             const image = new Image()
             const reader = new FileReader()
             const vm = this
-      
+
             reader.onload = (e) => {
               vm.image = e.target.result
             }
@@ -61,13 +61,11 @@ new Vue ({
             data.append('token', this.getToken())
             data.append('description', this.caption)
             data.append('facebookId', this.dataLS)
-            request.post(`http://localhost:3000/file/create/${this.dataLS}`, data)
+            request.post(`http://bersama.teddydevstack.com/file/create/${this.dataLS}`, data)
             .then(response => {
               console.log(response);
-            //   request.get(`http://localhost:3000/`)
+            //   request.get(`http://bersama.teddydevstack.com/`)
             })
         }
     }
 })
-
-

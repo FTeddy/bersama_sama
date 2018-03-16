@@ -4,7 +4,7 @@ Vue.component('card-component', {
             <img :src="info.filePath" class="img-fluid" alt="">
             <div class="card-detail">
 
-                
+
 
                 <div class="row">
                     <div class="col-6">
@@ -21,7 +21,7 @@ Vue.component('card-component', {
                                 </span>
 
                             <span v-if="count > 0" style="font-size: 12px;">
-                               
+
                             </span>
                         </div>
                     </div>
@@ -36,9 +36,9 @@ Vue.component('card-component', {
                             <h4>{{ info.user.username }}</h4>
                         </div>
                     </div>
-            
+
                 </div>
-                 
+
                 <div class="card-desc">
                     {{ info.description }}
                 </div>
@@ -66,7 +66,7 @@ Vue.component('card-component', {
 
             if (liked.length === 0) {
                 console.log('asda')
-                axios.put(`http://localhost:3000/file/like/${img_id}`, {
+                axios.put(`http://bersama.teddydevstack.com/file/like/${img_id}`, {
                     token: token
                 })
                 .then(data => {
@@ -76,12 +76,12 @@ Vue.component('card-component', {
                 .catch(err => {
                     console.log(err);
                 })
-            } else { 
+            } else {
 
                 liked.map( (data,i) => {
                     console.log('asdajks')
                     if (data.facebookId !== fbId) {
-                        axios.put(`http://localhost:3000/file/like/${img_id}`, {
+                        axios.put(`http://bersama.teddydevstack.com/file/like/${img_id}`, {
                             token: token
                         })
                         .then(data => {
@@ -91,13 +91,13 @@ Vue.component('card-component', {
                         .catch(err => {
                             console.log(err);
                         })
-                    } 
+                    }
                 })
 
             }
-         
+
         },
-       
+
     },
     computed: {
         countLike: function () {

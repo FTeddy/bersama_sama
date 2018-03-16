@@ -19,7 +19,7 @@ function checkLoginState() {
 window.fbAsyncInit = function() {
     FB.init({
     appId: 200716787345167,
-    cookie     : true,  // enable cookies to allow the server to access 
+    cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
@@ -42,7 +42,7 @@ function testAPI(token) {
     console.log('Successful login for: ' + response.name);
     console.log(response);
         localStorage.setItem('name', response.name)
-        axios.post('http://localhost:3000/login/', {
+        axios.post('http://bersama.teddydevstack.com/login/', {
             idFB: response.id,
             email: response.email,
             fbToken: token.authResponse.accessToken,
