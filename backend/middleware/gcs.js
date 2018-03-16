@@ -26,7 +26,7 @@ function googleUpload (req, res, next) {
   }
 
   let extension = req.file.originalname.split('.').pop();
-  const destination = `${req.params.userId}/`;
+  const destination = `${req.body.facebookId}/`;
   const uploadName = destination + Date.now() + '-bersama.' + extension;
   const file = bucket.file(uploadName);
 
