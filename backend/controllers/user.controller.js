@@ -6,7 +6,7 @@ module.exports = {
             .populate('files')
             .exec()
             .then(data => {
-                
+
                 res.status(200).json({
                     message: 'Success',
                     data: data
@@ -38,6 +38,7 @@ module.exports = {
           .exec().then(foundUser => {
             if (foundUser) {
                 console.log('verify succesful')
+                req.user = foundUser
               next()
             } else {
               res.status(401).json({

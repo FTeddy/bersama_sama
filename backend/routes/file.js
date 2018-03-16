@@ -11,7 +11,7 @@ const {verifyUser} = require('../controllers/user.controller')
 router.post('/create/:facebookId',memUpload.single('image'), decodeJWT, verifyUser, googleUpload, create);
 router.get('/', findAll);
 router.get('/:id', findById);
-router.put('/:fileId/:userid', like);
+router.put('/like/:fileId', memUpload.single('image'), decodeJWT, verifyUser, like);
 router.delete('/delete/:fileId', findOneAndNext, googleDelete, destroy);
 
 module.exports = router
