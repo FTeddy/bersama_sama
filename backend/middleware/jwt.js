@@ -24,7 +24,6 @@ function decodeJWT (req, res, next) {
       err: e
     });
   }
-
 }
 
 // function authJWT (req, res, next) {
