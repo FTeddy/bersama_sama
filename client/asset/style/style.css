@@ -1,0 +1,52 @@
+
+
+.navbar-logo {
+    width: 100%;
+    margin-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    text-align: center;
+}
+
+.navbar-logo img {
+    width: 50px;
+}
+
+.bottom-nav.fixed-bottom {
+    padding: 20px;
+    background-color: #f8f9fa !important;
+    text-align: center;
+}
+
+.bottom-nav img {
+    width: 30px;
+}
+
+.border-bottom-nav {
+    border-left: 1px solid #BFBFBF;
+    border-right: 1px solid #BFBFBF;
+}
+
+.card-user {
+    margin-bottom: 20px;
+}
+
+.card-detail {
+    padding: 20px;
+}
+
+.card-bio h4 {
+    font-size: 15px !important;
+}
+
+.card-desc {
+    font-size: 12px;
+}
+
+.display-on {
+    display: block !important;
+}
+
+.display-off {
+    display: none !important;
+}
