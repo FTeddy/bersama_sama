@@ -29,7 +29,7 @@ module.exports = {
                     const newUser = new User({
                         email: email,
                         facebookId: idFB,
-                        imgUrl: imgUrl,
+                        profilImg: imgUrl,
                         username: username
                     })
                     newUser.save((err, data) => {
@@ -43,4 +43,3 @@ module.exports = {
             })
     }
 }
-
