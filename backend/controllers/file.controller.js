@@ -125,5 +125,25 @@ module.exports = {
               err: err
             })
           })
+    },
+
+    verifyUser: (req, res, next) => {
+      const email = req.decoded.email;
+      User.findOne({email : email})
+        .exec().then(foundUser => {
+          if (foundUser) {
+            next()
+          } else {
+            res.status(401).json({
+              message: 'User is not authorized to post here.'
+            })
+          }
+        })
+        .catch(err => {
+          res.status(500).json({
+            message: 'Server Error',
+            err: err
+          })
+        })
     }
 }
