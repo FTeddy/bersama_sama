@@ -3,26 +3,106 @@ Vue.component('card-component', {
         <div  class="card-user">
             <img :src="info.filePath" class="img-fluid" alt="">
             <div class="card-detail">
-                <div class="like-photo" style="margin-bottom: 10px">
-                    <button class="liked-btn display-off">
-                        <i class="fas fa-heart"></i>
-                    </button>
-                    <button v-on:click="count += 1" class="like-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <span v-if="count > 0" style="font-size: 12px;">
-                        {{ count }}
-                    </span>
+
+                
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="like-photo" style="margin-bottom: 10px">
+
+                                <i class="fas fa-heart display-off"></i>
+                                <button style="background-color: #FFF !important; border: none !important; " v-on:click="likePicture(info.likes, info._id)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+
+
+                                <span v-if="countLike > 0" style="font-size:12px;">
+                                    {{ countLike }}
+                                </span>
+
+                            <span v-if="count > 0" style="font-size: 12px;">
+                               
+                            </span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card-bio">
-                    <h4>Jonathan Joe</h4>
+                    <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
+                        <div class="col-2">
+                            <img :src="info.user.profilImg " class="rounded-circle img-fluid" alt="">
+                        </div>
+                        <div class="col-6 username">
+                            <h4>{{ info.user.username }}</h4>
+                        </div>
+                    </div>
+            
                 </div>
+                 
                 <div class="card-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero consequuntur repellendus, veritatis ratione maxime, odio, iusto
-                    soluta quos labore corrupti inventore ab ullam incidunt non earum cupiditate assumenda fuga quidem.
+                    {{ info.description }}
                 </div>
+                <div class="dateFromNow">
+                    {{ info.dateFromNow }}
+                </div>
+                <br>
+                <hr>
             </div>
         </div>
     `,
-    props: ['info', 'count']
+    props: ['info', 'count'],
+    data: function() {
+        return {
+            likeCount: 0
+        }
+    },
+    methods: {
+        likePicture: function (liked, img_id) {
+
+            let token = localStorage.getItem('token')
+            let fbId = localStorage.getItem('facebookId');
+
+            console.log('lol')
+
+            if (liked.length === 0) {
+                console.log('asda')
+                axios.put(`http://localhost:3000/file/like/${img_id}`, {
+                    token: token
+                })
+                .then(data => {
+                    window.location.href = 'index.html'
+                    console.log('sucess')
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            } else { 
+
+                liked.map( (data,i) => {
+                    console.log('asdajks')
+                    if (data.facebookId !== fbId) {
+                        axios.put(`http://localhost:3000/file/like/${img_id}`, {
+                            token: token
+                        })
+                        .then(data => {
+                            window.location.href = 'index.html'
+                            console.log('sucess')
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                    } 
+                })
+
+            }
+         
+        },
+       
+    },
+    computed: {
+        countLike: function () {
+            let count = this.info.likes.length
+            return count
+        }
+    }
 })

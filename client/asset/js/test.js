@@ -7,6 +7,7 @@ new Vue ({
     data: {
         data: null,
         dataLS: localStorage.getItem('facebookId'),
+        dataJWT: localStorage.getItem('token'),
         token: localStorage.getItem('token'),
         counter: 0,
         image: null,
@@ -22,8 +23,11 @@ new Vue ({
         },
         getData: function () { 
             const app = this
+            console.log(this.dataJWT)
             request.get('/file')
             .then(function (response) {
+                console.log(response)
+                // respons
                 app.data = response.data.data
             })
             .catch(function (error) {
