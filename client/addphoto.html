@@ -18,48 +18,40 @@
             <img src="./asset/img/logo.png" alt="" srcset="">
         </a>
     </nav>
-
-    <div class="bottom-nav fixed-bottom">
-        <div class="row">
-            <div class="col col-sm-4">
-                
-            </div>
-            <div class="col col-sm-4 border-bottom-nav">
-                <a href="#">
-                    <div id="upload_button">
-												<!-- <label>
-													<input id="image" name="image" type="file" ngf-select ng-model="new_files" ng-change="fs.uploadFiles(new_files)" multiple>
-													<span class="btn btn-default"><img src="./asset/img/add-image.png" alt=""></span>
-												</label> -->
-												<label class="cameraButton"><img src="./asset/img/add-image.png" alt="">
-														<input type="file" accept="image/*;capture=camera" id="image" name="image">
-												</label>
-											</div>
-                </a>
-            </div>
-            <div class="col col-sm-4">
-               
-            </div>
-        </div>
-    </div>
-{{fb_id}}
     <div id="app-vue">
+    <div class="bottom-nav fixed-bottom">
+      <div class="row">
+          <div class="col col-sm-4">
+              
+          </div>
+          <div class="col col-sm-4 border-bottom-nav">
+            <a href="#">
+                <div id="upload_button">
+                    <label class="cameraButton"><img src="./asset/img/add-image.png" alt="">
+                            <input type="file" accept="image/*;capture=camera" class="form-control-file" id="image" aria-describedby="fileHelp" @change="onFileChange">
+                    </label>
+                </div>
+            </a>
+          </div>
+          <div class="col col-sm-4">
+              
+          </div>
+      </div>
+    </div>
       <div class="container">
         <div class="main-content" style="padding-top: 80px; padding-bottom: 70px;">
-          <form action="http://localhost:3000/file/create/10215495941809792" method="post">
-            <input type="file" id="image" name="image" accept="image/*;capture=camera">
-          </form>
-          <button class="btn btn-primary" type="submit">submit</button>
+          <img :src="image" class="img img-fluid w-100" alt="">
+          <div class="form-group" style="margin:1rem auto;">
+              <label for="caption">Caption</label>
+              <textarea class="form-control" cols="12" rows="6" v-model="caption"></textarea>
+              <button type="submit" @click="uploadImage"><i class="fab fa-telegram-plane" style="font-size:1.5rem;margin:1rem auto;"></i></button>
+          </div>
         </div>
       </div>
     </div>
     <!-- Main Asset -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="asset/js/test.js"></script>
-		<script>
-        let img = document.getElementById("#image").value
-        console.log(img,"<<<<<<<");
-    </script>
    
     <!-- Jquery and Bootstrap, ETC Assets -->
 
