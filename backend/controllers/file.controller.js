@@ -11,17 +11,23 @@ module.exports = {
                 mimeType: req.file.mimetype,
                 userId: foundUser._id,
             }
+
             Files.create(file, (err, data) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(400).json({
-                        message: err.message
+                // update user here
+                foundUser.files.push(data._id);
+                foundUser.save().then((User) => {
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).json({
+                            message: err.message
+                        })
+                    }
+                    res.status(200).json({
+                        message: 'New file inserted',
+                        data
                     })
-                }
-                res.status(200).json({
-                    message: 'New file inserted',
-                    data
                 })
+
             })
           })
           .catch(err => {
